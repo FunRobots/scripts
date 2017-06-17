@@ -43,7 +43,7 @@ function run_roscore(){
 
 case $1 in
 "enter_package" )
-	sudo docker run -ti -w="/root/catkin_ws" --privileged --device /dev:/dev "$DOCKER_IMAGE_NAME" /bin/bash -c "source /opt/ros/kinetic/setup.bash; source devel/setup.bash"
+	sudo docker run -ti -w="/root/catkin_ws" --privileged --device /dev:/dev "$DOCKER_IMAGE_NAME"
 	;;
 	
 "run_package" )
