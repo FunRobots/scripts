@@ -59,13 +59,15 @@ case $1 in
 	;;
 	
 "run_node" )
-	sudo docker run -w="/root/catkin_ws" -ti --privileged --device /dev:/dev "$DOCKER_IMAGE_NAME" /bin/bash -c "source /opt/ros/kinetic/setup.bash; source devel/setup.bash; roslaunch $ROS_PACKAGE_NAME $3.launch"
+	sudo docker run -w="/root/catkin_ws" -ti --privileged --device /dev:/dev "$DOCKER_IMAGE_NAME" /bin/bash -c "source /opt/ros/kinetic/setup.bash; source devel/setup.bash; roslaunch $ROS_PACKAGE_NAME $2.launch"
 	;;
-	
+
+"update_package" )
+        sudo docker run -w="/root/catkin_ws/src/$ROS_PACKAGE_NAME" "$DOCKER_IMAGE_NAME" /bin/bash -c "git pull"
+        ;;
+
 *)
 	sudo docker run -w="/root/catkin_ws" -ti --privileged --device /dev:/dev "$DOCKER_IMAGE_NAME" /bin/bash -c "$1"
 	;;
-	
-"update_package")
-	sudo docker run -w="/root/catkin_ws/src/$ROS_PACKAGE_NAME" "$DOCKER_IMAGE_NAME" /bin/bash -c "git pull"
+
 esac
