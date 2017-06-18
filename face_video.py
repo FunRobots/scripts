@@ -12,7 +12,8 @@ out = cv2.VideoWriter('face_video.avi', fourcc, 8.0, (640,480))
 start = time.time()
 while time.time() - start < 20:
     # Capture frame-by-frame
-    ret, frame = video_capture.read()
+    ret, frm = video_capture.read()
+    frame = cv2.flip(frm, 0)
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
