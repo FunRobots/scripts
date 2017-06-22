@@ -59,12 +59,12 @@ if __name__ == '__main__':
             im_cap_and_save('9090.png')
         elif point == 7: #rotate dispenser servo until give candy
             start = time.time()
+            dispenser.run()
             while time.time() - start < TIMEOUT:
-                dispenser.set_angle(360)
-                dispenser.set_angle(0)
                 if ser.read() == b'1': #if candy dispensing sensor sent true
                     print('candy!')
                     break
+            dispenser.stop()
             print('candy timeout!')
         else:
             angle = float(input('\t input angle: '))
