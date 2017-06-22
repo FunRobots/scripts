@@ -44,7 +44,7 @@ if __name__ == '__main__':
     cap = cv2.VideoCapture(0)
 
     hp = HeadPublisher()
-    dispenser = Dispenser()
+    dispenser = Dispenser(SERVO_CHANNEL=4)
     ser = serial.Serial('/dev/tty*', 9600) #CORRECT!!
     
     while True:
