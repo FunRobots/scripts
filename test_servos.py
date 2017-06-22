@@ -16,17 +16,22 @@ except:
 
 
 from motion.head.head_publisher import HeadPublisher
+from motion.candy_dispenser.candy_dispenser_conroller import Dispenser
 
+import serial
+TIMEOUT = 10
 import time
 
 
 def menu():
-    print('1. h_angle = v_angle = 90')
-    print('2. set horizontal angle')
-    print('3. set vertical angle')
-    print('4. shift horizontal angle')
-    print('5. shift vertical angle')
-    print('6. exit')
+    print('1. head h_angle = v_angle = 90')
+    print('2. head set horizontal angle')
+    print('3. head set vertical angle')
+    print('4. head shift horizontal angle')
+    print('5. head shift vertical angle')
+    print('6. dispenser rotate angle')
+    print('7. dispenser totate until give candy')
+    print('8. exit')
 
 def im_cap_and_save(name):
     time.sleep(1)
@@ -39,19 +44,30 @@ if __name__ == '__main__':
     cap = cv2.VideoCapture(0)
 
     hp = HeadPublisher()
-
+    dispenser = Dispenser()
+    ser = serial.Serial('/dev/tty*', 9600) #CORRECT!!
+    
     while True:
         menu()
         ans = input('>')
         point = int(ans)
-        if point == 6:
+        if point == 8:
             break
         elif point == 1:
             hp.set_h_angle(90)
             hp.set_v_angle(90)
             im_cap_and_save('9090.png')
+        elif point == 7: #rotate dispenser servo until give candy
+            start = time.time()
+            while time.time() - start < TIMEOUT:
+                dispenser.set_angle(360)
+                dispenser.set_angle(0)
+                if ser.read() == b'1': #if candy dispensing sensor sent true
+                    print('candy!')
+                    break
+            print('candy timeout!')
         else:
-            angle = float(input('\t input angle'))
+            angle = float(input('\t input angle: '))
             if point == 2:
                 hp.set_h_angle(angle)
                 im_cap_and_save('set_h_' + str(angle) + '.png')
@@ -64,5 +80,7 @@ if __name__ == '__main__':
             elif point == 5:
                 hp.shift_v_angle(angle)
                 im_cap_and_save('shift_v_' + str(angle) + '.png')
+            elif point == 6:
+                dispenser.set_angle(angle)
             else:
                 print('invalid input')
