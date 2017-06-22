@@ -16,7 +16,7 @@ except:
 
 
 from motion.head.head_publisher import HeadPublisher
-from motion.candy_dispenser.candy_dispenser_conroller import Dispenser
+from motion.candy_dispenser.candy_dispenser_controller import Dispenser
 
 import serial
 TIMEOUT = 10
@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     hp = HeadPublisher()
     dispenser = Dispenser(SERVO_CHANNEL=4)
-    ser = serial.Serial('/dev/tty*', 9600) #CORRECT!!
+    #ser = serial.Serial('/dev/tty*', 9600) #CORRECT!!
     
     while True:
         menu()
