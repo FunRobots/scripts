@@ -27,8 +27,8 @@ def menu():
     print('1. head h_angle = v_angle = 90')
     print('2. head set horizontal angle')
     print('3. head set vertical angle')
-    print('4. head shift horizontal angle')
-    print('5. head shift vertical angle')
+    print('4. head move horizontal angle')
+    print('5. head move vertical angle')
     print('6. dispenser rotate angle')
     print('7. dispenser totate until give candy')
     print('8. exit')
@@ -61,7 +61,7 @@ if __name__ == '__main__':
             start = time.time()
             dispenser.run()
             while time.time() - start < TIMEOUT:
-                if ser.read() == b'1': #if candy dispensing sensor sent true
+                if ser.read(4) == b'true': #if candy dispensing sensor sent true
                     print('candy!')
                     break
             dispenser.stop()
@@ -75,10 +75,10 @@ if __name__ == '__main__':
                 hp.set_v_angle(angle)
                 im_cap_and_save('set_v_' + str(angle) + '.png')
             elif point == 4:
-                hp.shift_h_angle(angle)
+                hp.move_h_angle(angle)
                 im_cap_and_save('shift_h_' + str(angle) + '.png')
             elif point == 5:
-                hp.shift_v_angle(angle)
+                hp.move_v_angle(angle)
                 im_cap_and_save('shift_v_' + str(angle) + '.png')
             elif point == 6:
                 dispenser.set_angle(angle)
