@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     hp = HeadPublisher()
     dispenser = Dispenser(SERVO_CHANNEL=4)
-    #ser = serial.Serial('/dev/tty*', 9600) #CORRECT!!
+    ser = serial.Serial('/dev/ttyACM0', 9600)
     
     while True:
         menu()
