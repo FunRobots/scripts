@@ -7,11 +7,12 @@ import os
 
 if os.path.exists(TEST_HEAD_FOLDER) is False:
     os.mkdir(TEST_HEAD_FOLDER)
-    
+
+import sys
 try:
     import cv2
 except:
-    os.insert(1, '/usr/local/lib/python3.5/dist-packages')
+    sys.path.insert(1, '/usr/local/lib/python3.5/dist-packages')
     import cv2
 
 
@@ -91,7 +92,7 @@ def control_head():
         else:
             pass
 
-        im_cap_and_save('head({0} {1})'.format(str(h_angle), str(v_angle))
+        im_cap_and_save('head({0} {1})'.format(str(h_angle) + '.png', str(v_angle)))
         clear = os.system('clear')
         
 
@@ -133,7 +134,7 @@ def control_eyes():
 
 def control_eyebrows():
     global ebp
-    
+
     clear = os.system('clear')
     
     step = 5
