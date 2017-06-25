@@ -10,8 +10,8 @@ class Social:
         self.twitter_hashtag = str()
         self.print_tags()
 
-        sub_vk = rospy.Subscriber('/social/vk/newsfeed_scanner/hashtag', String, self.callback_vk_hashtag)
-        twitter_vk = rospy.Subscriber('/social/twitter/code_scanner/code', String, self.callback_twitter_hashtag)
+        #sub_vk = rospy.Subscriber('/social/vk/newsfeed_scanner/hashtag', String, self.callback_vk_hashtag)
+        #twitter_vk = rospy.Subscriber('/social/twitter/code_scanner/code', String, self.callback_twitter_hashtag)
         
     def callback_vk_hashtag(self, data: String):
         self.vk_hashtag = data.data
@@ -22,10 +22,11 @@ class Social:
         self.print_tags()
 
     def print_tags(self):
-        clear = os.system('clear')
-        print('-----------hashtags-----------')
-        print('vk: ', self.vk_hashtag)
-        print('twitter: ', self.twitter_hashtag)
+        #print('vk: ', self.vk_hashtag)
+        if rospy.has_param('twitter_hashtag'):
+            clear = os.system('clear')
+            print('-----------hashtags-----------')
+            print('twitter: ', rospy.get_param('twitter_hashtag')
 
 
 
@@ -38,5 +39,5 @@ if __name__ == '__main__':
             rospy.get_master().getPid()
         except:
             break
-
-        time.time(0.1)
+        social.print_tags()
+        time.sleep(1)

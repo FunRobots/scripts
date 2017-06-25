@@ -25,7 +25,7 @@ from motion.eyebrows.eyebrows_publisher import EyebrowsPublisher
 from motion.candy_dispenser.candy_dispenser_controller import Dispenser
 
 import serial
-TIMEOUT = 10
+TIMEOUT = 5
 import time
 
 import ros_numpy
@@ -170,6 +170,7 @@ def menu():
 
     
 if __name__ == '__main__':
+    global TIMEOUT
     rospy.init_node('test_head')
 
     
