@@ -10,8 +10,8 @@ class Social:
         self.twitter_hashtag = str()
         self.print_tags()
 
-        sub_vk = rospy.Subscriber('/social/vk/newsfeed_scanner/hashtag', String, callback_vk_hashtag)
-        twitter_vk = rospy.Subscriber('/social/twitter/code_scanner/code', String, callback_twitter_hashtag)
+        sub_vk = rospy.Subscriber('/social/vk/newsfeed_scanner/hashtag', String, self.callback_vk_hashtag)
+        twitter_vk = rospy.Subscriber('/social/twitter/code_scanner/code', String, self.callback_twitter_hashtag)
         
     def callback_vk_hashtag(self, data: String):
         self.vk_hashtag = data.data
