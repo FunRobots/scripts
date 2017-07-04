@@ -56,7 +56,7 @@ def im_cap_and_save(name):
                 print('image saving error: ', str(e))
                 
           
-        get_im_sub = rospy.Subscriber('/vision_face_tracking/face_image', Image, lock_recognize.callback)
+        get_im_sub = rospy.Subscriber('/vision_face_tracking/face_image', Image, callback_photo)
         time.sleep(1)
         get_im_sub.unregister()
         
@@ -85,9 +85,9 @@ def control_head():
             hp.move_v_angle(-step)
         elif ans == 's':
             hp.move_v_angle(step)
-        elif ans == 'l':
+        elif ans == 'a':
             hp.move_h_angle(step)
-        elif ans == 'r':
+        elif ans == 'd':
             hp.move_h_angle(-step)
         else:
             pass
