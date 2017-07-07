@@ -26,7 +26,7 @@ function run_package(){
 		key="-d"
 	fi
 	
-	sudo docker run "$key" -w="/root/catkin_ws" --privileged --device /dev:/dev "$DOCKER_IMAGE_NAME" /bin/bash -c "source /opt/ros/kinetic/setup.bash; source devel/setup.bash; roslaunch $ROS_PACKAGE_NAME run.launch"
+	sudo docker run "$key" -w="/root/catkin_ws" --privileged --device /dev:/dev "$DOCKER_IMAGE_NAME" /bin/bash -c "source /opt/ros/kinetic/setup.bash; roslaunch $ROS_PACKAGE_NAME run.launch"
 }
 
 function run_roscore(){
@@ -37,7 +37,7 @@ function run_roscore(){
 		key="-d"
 	fi
 	
-	sudo docker run "$key" -w="/root/catkin_ws" --privileged --device /dev:/dev "$DOCKER_IMAGE_NAME" /bin/bash -c "source /opt/ros/kinetic/setup.bash; source devel/setup.bash; roscore"
+	sudo docker run "$key" -w="/root/catkin_ws" --privileged --device /dev:/dev "$DOCKER_IMAGE_NAME" /bin/bash -c "source /opt/ros/kinetic/setup.bash; roscore"
 }
 
 
@@ -63,7 +63,7 @@ case $1 in
 	;;
 	
 "run_node" )
-	sudo docker run -w="/root/catkin_ws" -ti --privileged --device /dev:/dev "$DOCKER_IMAGE_NAME" /bin/bash -c "source /opt/ros/kinetic/setup.bash; source devel/setup.bash; roslaunch $ROS_PACKAGE_NAME $2.launch"
+	sudo docker run -w="/root/catkin_ws" -ti --privileged --device /dev:/dev "$DOCKER_IMAGE_NAME" /bin/bash -c "source /opt/ros/kinetic/setup.bash; roslaunch $ROS_PACKAGE_NAME $2.launch"
 	;;
 
 "update_package" )
