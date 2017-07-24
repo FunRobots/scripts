@@ -26,7 +26,8 @@ class Social:
         if rospy.has_param('twitter_hashtag'):
             clear = os.system('clear')
             print('-----------hashtags-----------')
-            print('twitter: ', rospy.get_param('twitter_hashtag')
+            print('twitter: ', rospy.get_param('twitter_hashtag'))
+            print('vk: ', rospy.get_param('vk_hashtag'))
 
 
 
