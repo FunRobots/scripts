@@ -16,7 +16,7 @@
 #	update_package - update candybot_v2 package from github repository
 
 ROS_PACKAGE_NAME="candybot_v2"
-DOCKER_IMAGE_NAME="candybot_vr"
+DOCKER_IMAGE_NAME="candybot_gui"
 
 function run_package(){
 	key="-ti"
