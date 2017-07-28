@@ -1,7 +1,7 @@
 import pyaudio
 import wave
 
-DEVICE=2
+DEVICE=3
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 16000
